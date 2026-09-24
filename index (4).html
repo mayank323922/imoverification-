@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MK boss</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:'Noto Sans Devanagari',Arial,sans-serif;
+    background:#050510;
+    color:#fff;
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 20%,#ff00cc55,transparent 30%),
+        radial-gradient(circle at 80% 20%,#00eaff55,transparent 30%),
+        radial-gradient(circle at 50% 90%,#7b00ff55,transparent 35%),
+        linear-gradient(135deg,#03030b,#09001a,#00151c,#10000e);
+    background-size:200% 200%;
+    animation:bgMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+    0%{background-position:0 0}
+    50%{background-position:100% 50%}
+    100%{background-position:0 100%}
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(25px);
+    opacity:.5;
+    animation:float 8s infinite ease-in-out;
+}
+
+.blob1{width:220px;height:220px;background:#ff0080;top:5%;left:5%}
+.blob2{width:280px;height:280px;background:#00eaff;right:5%;top:15%;animation-delay:2s}
+.blob3{width:200px;height:200px;background:#8a2be2;left:40%;bottom:-50px;animation-delay:4s}
+
+@keyframes float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(50px,-40px) scale(1.15)}
+}
+
+.main{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.glass-card{
+    width:min(900px,95%);
+    padding:60px 30px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:30px;
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:0 0 40px #00eaff22,inset 0 0 30px #ffffff08;
+    animation:cardFloat 5s ease-in-out infinite;
+}
+
+@keyframes cardFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
+
+.live{
+    display:inline-flex;
+    align-items:center;
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:4px;
+    margin-bottom:25px;
+    color:#fff;
+    text-shadow:0 0 8px #fff,0 0 18px #00ff95;
+}
+
+.live-dot{
+    width:11px;
+    height:11px;
+    margin-right:9px;
+    border-radius:50%;
+    background:#00ff95;
+    box-shadow:0 0 5px #00ff95,0 0 15px #00ff95,0 0 30px #00ff95;
+    animation:dotBlink 1s infinite;
+}
+
+@keyframes dotBlink{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.2;transform:scale(.55)}
+}
+
+.neon-text{
+    font-family:'Noto Sans Devanagari',Arial,sans-serif;
+    font-size:clamp(38px,8vw,90px);
+    font-weight:900;
+    line-height:1.2;
+    background:linear-gradient(
+        90deg,
+        #ff0080,#ff8a00,#ffe600,#00ff95,
+        #00eaff,#7b2cff,#ff00cc,#ff0080
+    );
+    background-size:400% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:gradientMove 5s linear infinite,neonBlink 1.8s ease-in-out infinite;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0 center}
+    100%{background-position:400% center}
+}
+
+@keyframes neonBlink{
+    0%,100%{
+        opacity:1;
+        filter:drop-shadow(0 0 5px #ff00cc) drop-shadow(0 0 15px #00eaff);
+    }
+    50%{
+        opacity:.45;
+        filter:drop-shadow(0 0 2px #fff);
+    }
+    60%{
+        opacity:1;
+        filter:drop-shadow(0 0 10px #ff00cc)
+               drop-shadow(0 0 30px #00eaff)
+               drop-shadow(0 0 50px #7b2cff);
+    }
+}
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 8px #fff,0 0 15px #00eaff;
+    animation:particleMove linear infinite;
+}
+
+@keyframes particleMove{
+    from{transform:translateY(110vh);opacity:0}
+    10%{opacity:1}
+    90%{opacity:1}
+    to{transform:translateY(-20vh);opacity:0}
+}
+
+@media(max-width:576px){
+    .glass-card{padding:45px 18px;border-radius:24px}
+    .live{font-size:12px;letter-spacing:3px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="particle" style="left:5%;animation-duration:9s"></div>
+    <div class="particle" style="left:12%;animation-duration:12s;animation-delay:2s"></div>
+    <div class="particle" style="left:22%;animation-duration:8s;animation-delay:1s"></div>
+    <div class="particle" style="left:35%;animation-duration:14s;animation-delay:3s"></div>
+    <div class="particle" style="left:48%;animation-duration:10s;animation-delay:5s"></div>
+    <div class="particle" style="left:60%;animation-duration:13s;animation-delay:1s"></div>
+    <div class="particle" style="left:72%;animation-duration:9s;animation-delay:4s"></div>
+    <div class="particle" style="left:84%;animation-duration:12s;animation-delay:2s"></div>
+    <div class="particle" style="left:94%;animation-duration:10s;animation-delay:6s"></div>
+</div>
+
+<main class="main">
+    <div class="glass-card">
+
+        <div class="live">
+            <span class="live-dot"></span>
+            LIVE
+        </div>
+
+        <h1 class="neon-text">
+            सभी का स्वागत है । अभी में सो रहा हूँ 
+        </h1>
+
+    </div>
+</main>
+
+</body>
+</html>
